@@ -16,8 +16,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'username' => 'Admin',
             'password' => \Illuminate\Support\Facades\Hash::make('password'),
-
-
+            'admin' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);

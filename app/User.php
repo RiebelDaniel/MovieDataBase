@@ -36,10 +36,19 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'admin' => 'boolean'
     ];
 
 
     public function movies(){
         return $this->belongsToMany(Movie::class,'users_movies','user_id','movie_id');
+    }
+
+    public function toggleAdmin()
+    {
+        $this->admin = ! $this->admin;
+        $this->save();
+
+        return $this;
     }
 }

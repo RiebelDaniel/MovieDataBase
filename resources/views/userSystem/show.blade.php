@@ -10,7 +10,7 @@
             <h4> Er hat interresse an den Filmen:
             @foreach($user->movies as $movie)
                 <br>
-                    - {{ $movie->titel }}
+                    - {{ $movie->title }}
 
                 @endforeach
 

@@ -2,33 +2,31 @@
 
 @section('content')
 
-<div class="box">
-    <div class="box-header">
-        Film hinzufügen
-    </div>
-
-<div class="box-body">
-
-
-    <form method="POST" action="/movie/search">
-        @csrf
-        <div class="form-group">
-            <label>Filmname: </label>
-            <input name="movieTitle" class="form-control">
+    <div class="box">
+        <div class="box-header">
+            <div class="box-title">Film hinzufügen</div>
         </div>
 
+        <div class="box-body">
+            <form method="POST" action="/movie/search">
+                @csrf
+                <div class="form-group">
+                    <label>Filmname: </label>
+                    <input name="movieTitle" class="form-control">
+                </div>
 
-        <button class="btn btn-success"> Suchen!</button>
 
+                <button class="btn btn-success">Suchen</button>
+            </form>
+        </div>
+    </div>
 
-    </form>
-    <br>
     @isset($movie)
+        <br>
         <div class="box box-success">
             <div class="box-header ">
-                <div class="box-title"><h4><a> {{ $movie->Title }}</a></h4></div>
-                <div class="box-tools pull-right">
-
+                <div class="box-title">{{ $movie->Title }}</div>
+                <div class="box-tools">
                     <span class="label label-primary">{{ $movie->Rated }}</span>
                 </div>
                 <!-- /.box-tools -->
@@ -46,47 +44,35 @@
 
                 </h4>
 
-
-            {{ $movie->Plot }}
-
+                <p>{{ $movie->Plot }}</p>
+            </div>
 
 
             <!-- /.box-body -->
-                <div class="box-footer">
+            <!-- box-footer -->
+            <div class="box-footer">
 
 
+                Veröffentlicht im Jahre {{ $movie->Year  }}
 
 
-                    Veröffentlich im Jahre {{ $movie->Year  }}
+                <form method="POST" action="/movie">
+                    @csrf
+
+                    <input type="hidden" value="{{ $movie->Title }}" name="Title">
+                    <input type="hidden" value="{{ $movie->Rated }}" name="Rated">
+                    <input type="hidden" value="{{ $movie->Poster }}" name="Poster">
+                    <input type="hidden" value="{{ $movie->Director }}" name="Director">
+                    <input type="hidden" value="{{$movie->Genre}}" name="Genre">
+                    <input type="hidden" value="{{$movie->Runtime}}" name="Runtime">
+                    <input type="hidden" value="{{$movie->Plot}}" name="Plot">
+                    <input type="hidden" value="{{$movie->Year}}" name="Year">
 
 
-                    <form method="POST" action="/movie">
-                        @csrf
-
-                        <input type="hidden" value="{{ $movie->Title }}" name="Title">
-                        <input type="hidden" value="{{ $movie->Rated }}" name="Rated">
-                        <input type="hidden" value="{{ $movie->Poster }}" name="Poster">
-                        <input type="hidden" value="{{ $movie->Director }}" name="Director">
-                        <input type="hidden" value="{{$movie->Genre}}" name="Genre">
-                        <input type="hidden" value="{{$movie->Runtime}}" name="Runtime">
-                        <input type="hidden" value="{{$movie->Plot}}" name="Plot">
-                        <input type="hidden" value="{{$movie->Year}}" name="Year">
-
-
-                        <button type="submit" class="btn btn-success">In die Datenbank aufnehmen</button>
-                    </form>
-
-
-                    <!-- box-footer -->
-                </div>
+                    <button type="submit" class="btn btn-success">In die Datenbank aufnehmen</button>
+                </form>
+            </div>
+            <!-- /.box-footer -->
+        </div>
     @endisset
-
-
-
-</div>
-
-</div>
-
-
-
 @endsection

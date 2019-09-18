@@ -13,4 +13,12 @@ class Movie extends Model
         return $this->belongsToMany(User::class,'users_movies','movie_id','user_id');
     }
 
+    public function setWatched()
+    {
+        $this->watched = 1;
+        $this->save();
+
+        return $this;
+    }
+
 }

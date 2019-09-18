@@ -2,7 +2,7 @@
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::resource('/movie','MovieController')->except([
+    Route::resource('movie','MovieController')->except([
         'destroy', 'edit'
     ]);
 
@@ -13,11 +13,9 @@ Route::middleware(['auth'])->group(function () {
         'edit','destroy'
     ]);
 
-    Route::get('/',function (){
-        return redirect('/movie');
-    });
+    Route::permanentRedirect('/', '/movie');
 
-    Route::get('/archiv','MovieController@indexArchiv');
+    Route::get('/archiv','MovieController@indexArchiv')->name('archiv');
 
     Route::post('/user/password','UserController@passwordChange');
 
