@@ -23,9 +23,7 @@ class MovieController extends Controller
 
         $movies = Movie::where('watched', '1')->orderBy('id', 'desc')->paginate(8);
 
-        $data = ['bla'];
-
-        return view('movieSystem.list', compact('movies', 'data'));
+        return view('movieSystem.list', compact('movies'));
 
     }
 
